@@ -17,8 +17,18 @@
 ## Get up and running straight away
 
 * Press `F5` to open a new window with your extension loaded.
+  The launch config uses `--disable-extensions` so only `retropas` is active.
 * Load the files in `tests` and verify that syntax highlighting works and
   that the language configuration settings are working.
+* **Note:** The extension does not claim file extensions (to avoid overriding
+  other users' Pascal/ASM associations). During development, you'll need to
+  manually select the language mode ("Turbo Pascal" or "TASM") via the status
+  bar — or temporarily add `extensions` back to `package.json`:
+
+  ```json
+  { "id": "turbo", "aliases": ["Turbo Pascal"], "extensions": [".pas", ".inc", ".dpr", ".dpk"], ... }
+  { "id": "tasm", "aliases": ["TASM"], "extensions": [".asm"], ... }
+  ```
 
 ## Make changes
 
