@@ -1,8 +1,5 @@
 ;;
-;; $Id: basic.asm 3399 2025-07-25 13:39:36Z robertj $
-;;
-;; We've tested tasm.grammar.json with real ASM files from core/crtl
-;; and from TASM's examples directory, too.
+;; Test file
 ;;
 
 .MODEL LARGE
