@@ -17,7 +17,7 @@ git clone https://github.com/robert-j/retropas.git ~/.vscode/extensions/retropas
 
 | ID | Description | Features |
 |----|-------------|----------|
-| [turbo](#turbo-pascal) | *Turbo Pascal* and *Delphi* language support | folding, snippets |
+| [turbo](#turbo-pascal) | *Turbo Pascal* and *Delphi* language support | folding |
 | [tasm](#tasm-assembly) | *TASM*, *MASM*, *NASM* language support | folding |
 | [basm](#basm-injection) | BASM injection for *Pascal* | |
 | [nmake](#nmake-injection) | *NMAKE* injection for *Makefiles* | |
