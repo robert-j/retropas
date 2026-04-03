@@ -15,12 +15,12 @@ git clone https://github.com/robert-j/retropas.git ~/.vscode/extensions/retropas
 
 ## Languages
 
-| ID | Description | Features |
-|----|-------------|----------|
-| [turbo](#turbo-pascal) | *Turbo Pascal* and *Delphi* language support | folding |
-| [tasm](#tasm-assembly) | *TASM*, *MASM*, *NASM* language support | folding |
-| [basm](#basm-injection) | BASM injection for *Pascal* | |
-| [nmake](#nmake-injection) | *NMAKE* injection for *Makefiles* | |
+| ID | Description |
+|----|-------------|
+| [turbo](#turbo-pascal) | *Turbo Pascal* and *Delphi* language support |
+| [tasm](#tasm-assembly) | *TASM*, *MASM*, *NASM* language support |
+| [basm](#basm-injection) | BASM injection for *Pascal* |
+| [nmake](#nmake-injection) | *NMAKE* injection for *Makefiles* |
 
 ### Turbo Pascal
 
