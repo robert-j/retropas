@@ -1,8 +1,8 @@
 # Retro Pascal Language Support
 
 A Visual Studio Code extension providing syntax highlighting for retro
-Borland Pascal projects — including Turbo Pascal, TASM assembly, inline
-assembler blocks, and NMAKE makefiles.
+Borland Pascal projects — including Turbo Pascal, Delphi 1, TASM assembly,
+inline assembler blocks, and NMAKE makefiles.
 
 ## Installation
 

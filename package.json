@@ -1,7 +1,7 @@
 {
   "name": "retropas",
   "displayName": "Retro Pascal Language Support",
-  "description": "Retro Pascal Language Support",
+  "description": "Syntax highlighting for Turbo Pascal, Delphi 1, TASM, and NMAKE",
   "author": "https://github.com/robert-j",
   "license": "MIT",
   "version": "1.0.44",
