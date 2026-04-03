@@ -1,0 +1,298 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Turbo Assembler",
+  "patterns": [
+    {
+      "name": "comment.line.semicolon",
+      "match": ";.*$"
+    },
+    {
+      "include": "#preprocessor"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#labels"
+    },
+    {
+      "include": "#registers"
+    },
+    {
+      "include": "#instructions"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "preprocessor": {
+      "patterns": [
+        {
+          "name": "constant.language.tasm",
+          "match": "\\.((?i)(8086|8087|186|286|386|386P|387|486|486P|586|586P|686|686P|K3D|MMX|XMM))\\b"
+        },
+        {
+          "name": "storage.type.key",
+          "match": "\\b((?i)(MACRO|ENDM|PROC|ENDP|SEGMENT|ENDS|STRUCT))\\b"
+        },
+        {
+          "name": "storage.type.key",
+          "match": "(?i)([@\\w]+)\\s+(PROC|MACRO|SEGMENT|ENDP|ENDM|ENDS)\\b",
+          "captures": {"1":{
+            "name": "entity.name.function.tasm"
+          }}
+        },
+        {
+          "name": "string.quoted.double",
+          "match": "\".*\""
+        },
+        {
+          "name": "string.quoted.single",
+          "match": "'.*?'"
+        },
+        {
+          "name": "storage.type",
+          "match": "\\b((?i)(BYTE|SBYTE|WORD|SWORD|DWORD|SDWORD|QWORD|SQWORD|MMWORD|XMMWORD|YMMWORD))\\b"
+        },
+        {
+          "name": "storage.modifier",
+          "match": "\\b((?i)(ALIGN|BYTE|SBYTE|DWORD|SDWORD|EVEN|FWORD|LABEL|ORG|QWORD|REAL4|REAL8|REAL10|TBYTE|WORD|SWORD|MMWORD|XMMWORD|YMMWORD))\\b"
+        },
+        {
+          "name": "storage.other.define.data",
+          "match": "\\b((?i)(DB|DW|DD|DQ|DF|DT|FAR|NEAR))\\b"
+        },
+        {
+          "name": "storage.other.define.symbol",
+          "match": "\\b((?i)(EQU|=))\\b"
+        },
+        {
+          "name": "storage.other.define.struct",
+          "match": "\\b((?i)(STRUCT|ENDS))\\b"
+        },
+        {
+          "name": "keyword.other.visibility",
+          "match": "^\\s*((?i)(PUBLIC|EXTRN|END))\\b"
+        },
+        {
+          "name": "keyword.other.model",
+          "match": "^\\s*\\.((?i)(MODEL|DATA|FARDATA|CODE|STACK|STARTUP))\\b"
+        },
+        {
+          "name": "keyword.other.assembler",
+          "match": "^\\s*((?i)(TITLE|LOCALS|WARN|NOWARN|%INCL|%NOINCL|%SYMS|%NOSYMS))\\b"
+        },
+        {
+          "name": "keyword.other.cref",
+          "match": "^\\s*\\.((?i)(CREF|LIST|XCREF|XLIST))\\b"
+        },
+        {
+          "comment": "Also supports NASM's syntax",
+          "name": "markup.bold",
+          "match": "^\\s*((?i)%?(INCLUDE|IF|IFDEF|IFNDEF|ENDIF))\\b",
+          "captures": {"0":{
+            "name": "keyword.control.pre.tasm"
+          }}
+        },
+        {
+          "name": "variable.parameter",
+          "match": "<.*>"
+        }
+      ]
+    },
+    "registers": {
+      "patterns": [
+        {
+          "name": "constant.language.register.general",
+          "match": "\\b((?i)(AX|BX|CX|DX|AL|AH|BL|BH|CL|CH|DL|DH))\\b"
+        },
+        {
+          "name": "markup.bold.register.32",
+          "match": "\\b((?i)(EAX|EBX|ECX|EDX))\\b",
+          "captures": {"0" :{
+            "name":"constant.language.register.32"
+          }}
+        },
+        {
+          "name": "constant.language.register.segment",
+          "match": "\\b((?i)(CS|DS|ES|FS|GS|SS))\\b"
+        },
+        {
+          "name": "constant.language.register.pointer",
+          "match": "\\b((?i)(DI|SI|BP|SP|IP))\\b"
+        },
+        {
+          "name": "markup.bold.register.pointer.32",
+          "match": "\\b((?i)(EDI|ESI|EBP|ESP))\\b",
+          "captures": {"0" :{
+            "name":"constant.language.pointer.32"
+          }}
+        },
+        {
+          "name": "constant.language.register.control",
+          "match": "\\b((?i)(CR[01234]))\\b"
+        },
+        {
+          "name": "constant.language.register.pmode",
+          "match": "\\b((?i)(GDTR|IDTR|LDTR|TR))\\b"
+        },
+        {
+          "name": "constant.language.register.debug",
+          "match": "\\b((?i)(DR[0-7]|TR[3-7]))\\b"
+        },
+        {
+          "name": "constant.language.register.float",
+          "match": "\\b((?i)(R[0-7]))\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arithmetic",
+          "match": "\\b((?i)(\\+|-|\\*|\\\\|MOD))\\b"
+        },
+        {
+          "name": "keyword.operator.logic",
+          "match": "\\b((?i)(AND|OR|XOR|NOT|SHL|SHR))\\b"
+        },
+        {
+          "name": "keyword.operator.compare",
+          "match": "\\b((?i)(EQ|NE|GT|LT|GE|LE))\\b"
+        },
+        {
+          "name": "keyword.operator.number",
+          "match": "\\b((?i)(SEG|OFFSET|ADDR|TYPE|LENGTH|SIZE))\\b"
+        },
+        {
+          "name": "keyword.operator.type",
+          "match": "\\b((?i)(PTR|LOW|HIGH|SHORT|THIS))\\b"
+        },
+        {
+          "name": "keyword.operator.other",
+          "match": "\\b((?i)(DUP|REP))\\b"
+        }
+      ]
+    },
+    "instructions": {
+      "patterns": [
+        {
+          "name": "keyword.control.mov",
+          "match": "\\b((?i)(MOV|MOVSX|MOVZX|LEA|L[DEFGS]S|LASF|SAHF|XCHG|BSWAP|XLAT))\\b"
+        },
+        {
+          "name": "keyword.control.stack",
+          "match": "\\b((?i)(PUSH|POP|PUSHF|POPF|PUSHFD|POPFD|PUSHA|POPA|PUSHAD|POPAD|ENTER|LEAVE))\\b"
+        },
+        {
+          "name": "keyword.control.arithmetic",
+          "match": "\\b((?i)(ADD|ADC|SUB|SBB|INC|DEC|NEG|XADD|MUL|IMUL|DIV|IDIV|CBW|CWD|CWDE|CDQ|CMP))\\b"
+        },
+        {
+          "name": "keyword.control.bcd",
+          "match": "\\b((?i)(DAA|DAS|AAA|AAS|AAM|AAD))\\b"
+        },
+        {
+          "name": "keyword.control.flow.jump",
+          "match": "\\b((?i)(JMP|JC|JNC|JZ|JNZ|JS|JNS|JP|JNP|JO|JNO|JA|JNA|JG|JGE|JL|JLE|JEXZ|JECXZ|JB|JNAE|JNB|JAE|JE|JNE|JPE|JPO|JA|JBE|JNLE|JNL|JNGE|JNG|JCXZ))\\b"
+        },
+        {
+          "name": "keyword.control.flow.loop",
+          "match": "\\b((?i)(LOOP|LOOPZ|LOOPNZ|LOOPE|LOOPNE))\\b"
+        },
+        {
+          "name": "keyword.control.flow.proc",
+          "match": "\\b((?i)(CALL|RET|RETN|RETF|INT|IRET))\\b"
+        },
+        {
+          "name": "keyword.control.logic",
+          "match": "\\b((?i)(NOT|AND|OR|XOR))\\b"
+        },
+        {
+          "name": "keyword.control.shift",
+          "match": "\\b((?i)(SAL|SAR|SHL|SHR|RCL|RCR|ROL|ROR|SHLD|SHRD))\\b"
+        },
+        {
+          "name": "keyword.control.test",
+          "match": "\\b((?i)(TEST|BT[RSC]?))\\b"
+        },
+        {
+          "name": "keyword.control.scan",
+          "match": "\\b((?i)(BSF|BSR))\\b"
+        },
+        {
+          "name": "keyword.control.string.move",
+          "match": "\\b((?i)(MOVSB|MOVSW|MOVSD))\\b"
+        },
+        {
+          "name": "keyword.control.string.load",
+          "match": "\\b((?i)(LODSB|LODSW|LODSD))\\b"
+        },
+        {
+          "name": "keyword.control.string.store",
+          "match": "\\b((?i)(STOSB|STOSW|STOSD))\\b"
+        },
+        {
+          "name": "keyword.control.string.compare",
+          "match": "\\b((?i)(CMPSB|CMPSW|CMPSD))\\b"
+        },
+        {
+          "name": "keyword.control.string.search",
+          "match": "\\b((?i)(SCASB|SCASW|SCASD))\\b"
+        },
+        {
+          "name": "markup.bold.prefix",
+          "match": "\\b((?i)(REP|REPE|REPZ|REPNE|REPNZ|LOCK|SEGCS|SEGDS|SEGES|SEGSS))\\b",
+          "captures": {"0":{
+            "name": "keyword.control.prefix"
+          }}
+        },
+        {
+          "name": "keyword.control.port",
+          "match": "\\b(?<!@)((?i)(IN|OUT|INS|OUTS))\\b"
+        },
+        {
+          "name": "keyword.control.flag",
+          "match": "\\b((?i)(CLC|STC|CTC|CMC|CLD|STD|CLI|STI))\\b"
+        },
+        {
+          "name": "keyword.control.other",
+          "match": "\\b((?i)(NOP|HLT|WAIT|ESC|ASSUME))\\b"
+        },
+        {
+          "name": "keyword.control.pmode",
+          "match": "\\b((?i)(VERR|VERW))\\b"
+        }
+      ]
+    },
+    "labels": {
+      "patterns": [
+        {
+          "comment": "Label definition, supports NASM's dot-labels",
+          "name": "entity.name.function.tasm",
+          "match": "(?i)^\\s*\\.?[a-z0-9_@]+\\s*:"
+        },
+        {
+          "comment": "Label jump site",
+          "name": "keyword.control.tasm",
+          "match": "(?i)\\b(JMP|JC|JNC|JZ|JNZ|JS|JNS|JP|JNP|JO|JNO|JA|JNA|JG|JGE|JL|JLE|JEXZ|JECXZ|JB|JNAE|JNB|JAE|JE|JNE|JPE|JPO|JA|JBE|JNLE|JNL|JNGE|JNG|JCXZ|LOOP|LOOPE|LOOPNE|LOOPNZ|LOOPZ)\\s+(?:short\\s+)?(\\.?[a-z0-9_@]+)",
+          "captures": {
+            "2": {
+              "name": "entity.name.function.tasm"
+            }
+          }
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.tasm",
+          "match": "(?i)\\b([01]+B|[0-7]+[OQ]|[0-9][0-9a-f]*H|[0-9]+D?)\\b"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.tasm"
+}

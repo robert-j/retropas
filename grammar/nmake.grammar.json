@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.nmake.injection",
+  "injectionSelector": "L:source.makefile -comment",
+  "name": "nmake",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#defines"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [{
+        "comment": "Preprocessor directives",
+        "name": "keyword.control.nmake",
+        "match": "(?i)^!\\s*(cmdswitches|error|message|include|if|ifdef|ifndef|else|ifdef|ifndef|elseif|elseifdef|elseifndef|endif|undef)\\b"
+      }, {
+        "comment": "Dot directives",
+        "name": "keyword.control.nmake",
+        "match": "(?i)^\\.(ignore|precious|silent|suffixes)\\s*:"
+      }, {
+        "comment": "defined(...) and exist(...)",
+        "match": "(?i)\\b(defined|exist)\\((.*?)\\)",
+        "captures": {
+          "1": {
+            "name": "keyword.control.nmake"
+          },
+          "2": {
+            "patterns": [
+              {
+                "include": "source.makefile"
+              }
+            ]
+          }
+        }
+      }]
+    },
+    "defines": {
+      "patterns": [{
+        "comment": "Predefined constants",
+        "name": "variable.language.nmake",
+        "match": "\\b_NMAKE_VER\\b"
+      }]
+    }
+  }
+}

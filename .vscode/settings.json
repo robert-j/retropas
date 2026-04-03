@@ -1,0 +1,56 @@
+{
+  "files.associations": {
+    "*.pas": "turbo",
+    "*.inc": "turbo",
+    "*.dpr": "turbo",
+    "*.dpk": "turbo",
+    "*.asm": "tasm"
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "constant.character.bold.xamd",
+        "settings": {
+          "foreground": "#000000",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "constant.character.green.xamd",
+        "settings": {
+          "foreground": "#09b806"
+        }
+      },
+      {
+        "scope": "constant.character.red.xamd",
+        "settings": {
+          "foreground": "#bf0d0d"
+        }
+      },
+      {
+        "scope": "constant.character.yellow.xamd",
+        "settings": {
+          "foreground": "#ce8d02"
+        }
+      },
+      {
+        "scope": "constant.character.cyan.xamd",
+        "settings": {
+          "foreground": "#00bebe"
+        }
+      },
+      {
+        "scope": "constant.character.magenta.xamd",
+        "settings": {
+          "foreground": "#940094"
+        }
+      },
+      {
+        "scope": "constant.character.brown.xamd",
+        "settings": {
+          "foreground": "#94460e"
+        }
+      }
+    ]
+  }
+}

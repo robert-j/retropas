@@ -1,0 +1,6 @@
+.editorconfig
+.vscode/**
+DEVELOPMENT.md
+pascal/**
+tests/**
+tmp/**

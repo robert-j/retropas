@@ -1,0 +1,50 @@
+{
+  "name": "retropas",
+  "displayName": "Retro Pascal Language Support",
+  "description": "Retro Pascal Language Support",
+  "author": "https://github.com/robert-j",
+  "license": "MIT",
+  "version": "1.0.44",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robert-j/retropas.git"
+  },
+  "homepage": "https://github.com/robert-j/retropas#readme",
+  "bugs": {
+    "url": "https://github.com/robert-j/retropas/issues"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "tasm",
+      "aliases": ["TASM"],
+      "configuration": "./config/tasm.config.json"
+    },{
+      "id": "turbo",
+      "aliases": ["Turbo Pascal"],
+      "configuration": "./config/turbo.config.json"
+    }],
+    "grammars": [{
+      "language": "tasm",
+      "scopeName": "source.tasm",
+      "path": "./grammar/tasm.grammar.json"
+    },{
+      "language": "turbo",
+      "scopeName": "source.turbo",
+      "path": "./grammar/turbo.grammar.json"
+    },{
+      "scopeName": "source.nmake.injection",
+      "path": "./grammar/nmake.grammar.json",
+      "injectTo": ["source.makefile"]
+    },{
+      "scopeName": "source.basm.injection",
+      "path": "./grammar/basm.grammar.json",
+      "injectTo": ["source.turbo"]
+    }]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.basm.injection",
+  "injectionSelector": "L:source.turbo -comment -string",
+  "name": "BASM for Turbo Pascal",
+  "patterns": [
+    {
+      "include": "#asmblock"
+    }
+  ],
+  "repository": {
+    "asmblock": {
+      "patterns": [
+        {
+          "begin": "(?i)\\b(asm)\\b",
+          "end": "(?i)\\b(end)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.basm"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.turbo#comments"
+            },
+            {
+              "include": "source.turbo#strings"
+            },
+            {
+              "include": "source.tasm#numbers"
+            },
+            {
+              "include": "source.turbo#numbers"
+            },
+            {
+              "include": "#basm"
+            },
+            {
+              "include": "#tasm"
+            }
+          ]
+        }
+      ]
+    },
+    "tasm": {
+      "comment": "Include TASM syntax",
+      "patterns": [
+          {
+            "include": "source.tasm#labels"
+          },
+          {
+            "include": "source.tasm#registers"
+          },
+          {
+            "include": "source.tasm#instructions"
+          },
+          {
+            "include": "source.tasm#operators"
+          }
+      ]
+    },
+    "basm": {
+      "comment": "BASM syntax",
+      "patterns": [
+        {
+          "name": "entity.name.type.basm",
+          "match": "(?i)\\b(?<!&)(byte|word|dword|qword|far|near)\\b"
+        },
+        {
+          "comment": "32-bit prefixes: db $66 or $67",
+          "name": "markup.bold.basm",
+          "match": "(?i)\\b(db\\s+\\$6(?:6|7))\\b",
+          "captures": {"1": {
+            "name": "keyword.control.basm"
+          }}
+        },
+        {
+          "name": "entity.name.type.basm",
+          "match": "(?i)\\b(?<!&)(db|dw|dd|dq)\\b"
+        },
+        {
+          "name": "keyword.control.basm",
+          "match": "(?i)\\b(?<!&)(ptr|seg|offset)\\b"
+        },
+        {
+          "name": "keyword.other.basm",
+          "match": "(?i)\\s+@(result|data|code)\\b"
+        }
+      ]
+    }
+  }
+}
